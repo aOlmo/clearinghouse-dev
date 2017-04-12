@@ -180,7 +180,9 @@ def register_experiment(geni_user,experiment_name,researcher_name,researcher_add
   validations.validate_email(irb_email)
   validations.validate_register_experiment_field(experiment_goal)
 
-  experiment = maindb.create_experiment(geni_user, experiment_name,researcher_name,researcher_address ,researcher_email, irb_name,irb_email, experiment_goal)
+  experiment = maindb.create_experiment(geni_user, experiment_name,
+                    researcher_name, researcher_address,researcher_email, 
+                    irb_name, irb_email, experiment_goal)
 
   return experiment
 
@@ -222,7 +224,9 @@ def register_sensor(sensor_name,experiment,frequency,frequency_unit,frequency_ot
   validations.validate_register_experiment_field(precision_other)
   validations.validate_register_experiment_field(goal)
 
-  sensor = maindb.create_sensor(sensor_name,experiment,frequency,frequency_unit,frequency_other,precision,truncation, precision_other,goal,list_of_attributes)
+  sensor = maindb.create_sensor(sensor_name,experiment, frequency,
+              frequency_unit, frequency_other, precision, truncation, 
+              precision_other, goal, list_of_attributes)
 
   return sensor
 
