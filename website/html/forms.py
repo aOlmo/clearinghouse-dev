@@ -168,8 +168,8 @@ class GeneralSensorAtributesForm(forms.ModelForm):
   precision = forms.ChoiceField(label = 'ii. How precise do you need the data to be?',
     widget = forms.Select(),choices = P_CHOICES, initial='full', required =  False)
   truncation = forms.IntegerField(label='If truncation, choose the number of decimals to keep', 
-    min_value=1, widget=forms.NumberInput(attrs={'class': 'form-control'}), r
-    equired = False, initial = 1)
+    min_value=1, widget=forms.NumberInput(attrs={'class': 'form-control'}), 
+    required = False, initial = 1)
   precision_other = forms.CharField(label="A level of data precision that we currently do not support? Please elaborate:", 
     required=False, widget=forms.Textarea(attrs={'class': 'form-control', 'rows':1,
      'placeholder': 'Please provide any additional information that you would like'}))
