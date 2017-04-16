@@ -1211,13 +1211,33 @@ def registerexperiment(request):
             bluetooth_precision = bluetooth_form.cleaned_data['precision']
             bluetooth_truncation = bluetooth_form.cleaned_data['truncation']
             bluetooth_precision_other = bluetooth_form.cleaned_data['precision_other']
+            bluetooth_goal = bluetooth_form.cleaned_data['goal']
 
             if bluetooth_frequency == None:
               bluetooth_frequency = 0
               if bluetooth_frequency_other == '':
                 page_top_errors.append("Please select the frequency in the bluetooth sensor")
+
             if bluetooth_precision == 'truncate'and bluetooth_truncation == None:
               page_top_errors.append("Please select the truncation decimals in the bluetooth sensor")
+
+            if bluetooth_goal == '':
+              page_top_errors.append("Please explain the goal of using the bluetooth sensor")
+
+            if bluetooth_state == False and bluetooth_is_discovering == False and \
+                scan_mode == False and local_address == False and \
+                local_name == False:
+              page_top_errors.append("Please select any bluetooth attribute")
+
+            if page_top_errors == []:
+              try:
+                bluetooth = interface.register_sensor('bluetooth',experiment,battery_frequency,
+                                            battery_frequency_unit,battery_frequency_other,
+                                            battery_precision,battery_truncation, battery_precision_other,
+                                            battery_goal,[bluetooth_state,bluetooth_is_discovering,scan_mode,
+                                            local_address,local_name])
+              except ValidationError, err:
+                page_top_errors.append(str(err))
 
         else:#when bluetooth form is not valid
           page_top_errors.append("Bluetooth form is not valid")
@@ -1242,13 +1262,36 @@ def registerexperiment(request):
             cellular_precision = cellular_form.cleaned_data['precision']
             cellular_truncation = cellular_form.cleaned_data['truncation']
             cellular_precision_other = cellular_form.cleaned_data['precision_other']
+            cellular_goal = cellular_form.cleaned_data['goal']
 
             if cellular_frequency == None:
               cellular_frequency = 0
               if cellular_frequency_other == '':
                 page_top_errors.append("Please select the frequency in the cellular sensor")
+
             if cellular_precision == 'truncate'and cellular_truncation == None:
               page_top_errors.append("Please select the truncation decimals in the cellular sensor")
+
+            if cellular_goal == '':
+              page_top_errors.append("Please explain the goal of using the cellular sensor")
+
+            if network_roaming == False and cellID == False and \
+                location_area_code == False and mobile_country_code == False and \
+                mobile_network_code == False and network_operator == False and \
+                network_operator_name == False and network_type == False and \
+                service_state == False and signal_strengths == False:
+              page_top_errors.append("Please select any cellular attribute")
+
+            if page_top_errors == []:
+              try:
+                cellular = interface.register_sensor('cellular',experiment,cellular_frequency,
+                                            cellular_frequency_unit,cellular_frequency_other,
+                                            cellular_precision,cellular_truncation, cellular_precision_other,
+                                            cellular_goal,[network_roaming,cellID,location_area_code,
+                                            mobile_country_code,mobile_network_code,network_operator,network_operator_name
+                                            network_type,service_state,signal_strengths])
+              except ValidationError, err:
+                page_top_errors.append(str(err))
 
         else:#when cellular form is not valid
           page_top_errors.append("Cellular form is not valid")
@@ -1268,13 +1311,33 @@ def registerexperiment(request):
             location_precision = location_form.cleaned_data['precision']
             location_truncation = location_form.cleaned_data['truncation']
             location_precision_other = location_form.cleaned_data['precision_other']
+            location_goal = location_form.cleaned_data['goal']
 
             if location_frequency == None:
               location_frequency = 0
               if location_frequency_other == '':
                 page_top_errors.append("Please select the frequency in the location sensor")
+
             if location_precision == 'truncate'and location_truncation == None:
               page_top_errors.append("Please select the truncation decimals in the location sensor")
+
+            if location_goal == '':
+              page_top_errors.append("Please explain the goal of using the location sensor")
+
+            if location_providers == False and location_provider_enabled == False and \
+                location_data == False and last_known_location == False and \
+                geocode == False:
+              page_top_errors.append("Please select any location attribute")
+
+            if page_top_errors == []:
+              try:
+                location = interface.register_sensor('location',experiment,location_frequency,
+                                            location_frequency_unit,location_frequency_other,
+                                            location_precision,location_truncation, location_precision_other,
+                                            location_goal,[location_providers,location_provider_enabled,location_data,
+                                            last_known_location,geocode])
+              except ValidationError, err:
+                page_top_errors.append(str(err))
 
         else:#when location form is not valid
           page_top_errors.append("Location form is not valid")
@@ -1298,13 +1361,36 @@ def registerexperiment(request):
             settings_precision = settings_form.cleaned_data['precision']
             settings_truncation = settings_form.cleaned_data['truncation']
             settings_precision_other = settings_form.cleaned_data['precision_other']
+            settings_goal = settings_form.cleaned_data['goal']
 
             if settings_frequency == None:
               settings_frequency = 0
               if settings_frequency_other == '':
                 page_top_errors.append("Please select the frequency in the settings sensor")
+
             if settings_precision == 'truncate'and settings_truncation == None:
               page_top_errors.append("Please select the truncation decimals in the settings sensor")
+
+            if settings_goal == '':
+              page_top_errors.append("Please explain the goal of using the settings sensor")
+
+            if airplane_mode == False and ringer_silent_mode == False and \
+                screen_on == False and max_media_volume == False and \
+                max_ringer_volume == False and media_volume == False and \
+                ringer_volume == False and screen_brightness == False and \
+                screen_timeout == False:
+              page_top_errors.append("Please select any settings attribute")
+
+            if page_top_errors == []:
+              try:
+                settings = interface.register_sensor('settings',experiment,settings_frequency,
+                                            settings_frequency_unit,settings_frequency_other,
+                                            settings_precision,settings_truncation, settings_precision_other,
+                                            settings_goal,[airplane_mode,ringer_silent_mode,screen_on,
+                                            max_media_volume,max_ringer_volume,media_volume,ringer_volume
+                                            screen_brightness,screen_timeout])
+              except ValidationError, err:
+                page_top_errors.append(str(err))
 
         else:#when settings form is not valid
           page_top_errors.append("Settings form is not valid")
@@ -1325,13 +1411,33 @@ def registerexperiment(request):
             sensor_precision = sensor_form.cleaned_data['precision']
             sensor_truncation = sensor_form.cleaned_data['truncation']
             sensor_precision_other = sensor_form.cleaned_data['precision_other']
+            sensor_goal = sensor_form.cleaned_data['goal']
 
             if sensor_frequency == None:
               sensor_frequency = 0
               if sensor_frequency_other == '':
                 page_top_errors.append("Please select the frequency in the sensor sensor")
+
             if sensor_precision == 'truncate'and sensor_truncation == None:
               page_top_errors.append("Please select the truncation decimals in the sensor sensor")
+
+            if sensor_goal == '':
+              page_top_errors.append("Please explain the goal of using the sensor sensor")
+
+            if sensor_data == False and sensors_accuracy == False and \
+                light == False and accelerometer == False and \
+                magnetometer == False and orientation == False:
+              page_top_errors.append("Please select any sensor attribute")
+
+            if page_top_errors == []:
+              try:
+                sensor = interface.register_sensor('sensor',experiment,sensor_frequency,
+                                            cellular_frequency_unit,cellular_frequency_other,
+                                            cellular_precision,cellular_truncation, cellular_precision_other,
+                                            cellular_goal,[sensor_data,sensors_accuracy,light,
+                                            accelerometer,magnetometer,orientation])
+              except ValidationError, err:
+                page_top_errors.append(str(err))
 
         else:#when concret sensor form is not valid
           page_top_errors.append("Sensor form is not valid")
@@ -1347,13 +1453,30 @@ def registerexperiment(request):
             signalstrength_precision = signalstrength_form.cleaned_data['precision']
             signalstrength_truncation = signalstrength_form.cleaned_data['truncation']
             signalstrength_precision_other = signalstrength_form.cleaned_data['precision_other']
+            signalstrength_goal = signalstrength_form.cleaned_data['goal']
 
             if signalstrength_frequency == None:
               signalstrength_frequency = 0
               if signalstrength_frequency_other == '':
                 page_top_errors.append("Please select the frequency in the signalstrength sensor")
+
             if signalstrength_precision == 'truncate'and signalstrength_truncation == None:
               page_top_errors.append("Please select the truncation decimals in the signalstrength sensor")
+
+            if signalstrength_goal == '':
+              page_top_errors.append("Please explain the goal of using the signalstrength sensor")
+
+            if signal_strengths == False:
+              page_top_errors.append("Please select any signalstrength attribute")
+
+            if page_top_errors == []:
+              try:
+                signalstrength = interface.register_sensor('signalstrength',experiment,cellular_frequency,
+                                            cellular_frequency_unit,cellular_frequency_other,
+                                            cellular_precision,cellular_truncation, cellular_precision_other,
+                                            cellular_goal,[signal_strengths])
+              except ValidationError, err:
+                page_top_errors.append(str(err))
 
         else:#when signalstrength form is not valid
           page_top_errors.append("Signalstrength form is not valid")
@@ -1374,13 +1497,33 @@ def registerexperiment(request):
             wifi_precision = wifi_form.cleaned_data['precision']
             wifi_truncation = wifi_form.cleaned_data['truncation']
             wifi_precision_other = wifi_form.cleaned_data['precision_other']
+            wifi_goal = wifi_form.cleaned_data['goal']
 
             if wifi_frequency == None:
               wifi_frequency = 0
               if wifi_frequency_other == '':
                 page_top_errors.append("Please select the frequency in the wifi sensor")
+
             if wifi_precision == 'truncate'and wifi_truncation == None:
               page_top_errors.append("Please select the truncation decimals in the wifi sensor")
+
+            if wifi_goal == '':
+              page_top_errors.append("Please explain the goal of using the wifi sensor")
+
+            if wifi_state == False and ip_address == False and \
+                link_speed == False and supplicant_state == False and \
+                ssid == False and rssi == False:
+              page_top_errors.append("Please select any wifi attribute")
+
+            if page_top_errors == []:
+              try:
+                wifi = interface.register_sensor('wifi',experiment,cellular_frequency,
+                                            cellular_frequency_unit,cellular_frequency_other,
+                                            cellular_precision,cellular_truncation, cellular_precision_other,
+                                            cellular_goal,[wifi_state,ip_address,link_speed,
+                                            supplicant_state,ssid,rssi])
+              except ValidationError, err:
+                page_top_errors.append(str(err))
 
         else:#when bluetooth wifi is not valid
           page_top_errors.append("Wifi form is not valid")

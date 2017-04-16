@@ -351,7 +351,73 @@ def create_sensor(senor_name,experiment,frequency,frequency_unit,frequency_other
                         if_battery_present=list_of_attributes[0], battery_health=list_of_attributes[1],
                         battery_level=list_of_attributes[2], battery_plug_type=list_of_attributes[3],
                         battery_status=list_of_attributes[4], battery_technology=list_of_attributes[5])
-            sensor.save()
+
+          elif senor_name == 'bluetooth':
+            sensor = Bluetooth(experiment_id=experiment, frequency=frequency,
+                        frequency_unit=frequency_unit, frequency_other=frequency_other,
+                        precision=precision, truncation=truncation,
+                        precision_other=precision_other, goal=goal, 
+                        bluetooth_state=list_of_attributes[0], bluetooth_is_discovering=list_of_attributes[1],
+                        bluetooth_sacn_mode=list_of_attributes[2], bluetooth_local_address=list_of_attributes[3],
+                        bluetooth_local_name=list_of_attributes[4])
+
+          elif senor_name == 'cellular':
+            sensor = Cellular(experiment_id=experiment, frequency=frequency,
+                        frequency_unit=frequency_unit, frequency_other=frequency_other,
+                        precision=precision, truncation=truncation,
+                        precision_other=precision_other, goal=goal, 
+                        cellular_network_roaming=list_of_attributes[0], cellular_cellID=list_of_attributes[1],
+                        cellular_location_area_code=list_of_attributes[2], cellular_mobile_country_code=list_of_attributes[3],
+                        cellular_mobile_network_code=list_of_attributes[4], cellular_network_operator=list_of_attributes[5],
+                        cellular_network_operator_name=list_of_attributes[6], cellular_network_type=list_of_attributes[7],
+                        cellular_service_state=list_of_attributes[8], cellular_signal_strengths=list_of_attributes[9])
+
+          elif senor_name == 'location':
+            sensor = Location(experiment_id=experiment, frequency=frequency,
+                        frequency_unit=frequency_unit, frequency_other=frequency_other,
+                        precision=precision, truncation=truncation,
+                        precision_other=precision_other, goal=goal, 
+                        location_providers=list_of_attributes[0], location_data=list_of_attributes[1],
+                        location_last_known_location=list_of_attributes[2], location_geocode=list_of_attributes[3])
+
+          elif senor_name == 'settings':
+            sensor = Settings(experiment_id=experiment, frequency=frequency,
+                        frequency_unit=frequency_unit, frequency_other=frequency_other,
+                        precision=precision, truncation=truncation,
+                        precision_other=precision_other, goal=goal, 
+                        settings_airplane_mode=list_of_attributes[0], settings_ringer_slient_mode=list_of_attributes[1],
+                        settings_screen_on=list_of_attributes[2], settings_max_media_volume=list_of_attributes[3],
+                        settings_max_ringer_volume=list_of_attributes[4], settings_media_volume=list_of_attributes[5], 
+                        settings_ringer_volume =list_of_attributes[6], settings_screen_brightness=list_of_attributes[7], 
+                        settings_screen_tiemout=list_of_attributes[8])
+
+          elif senor_name == 'sensor':
+            sensor = ConcretSensor(experiment_id=experiment, frequency=frequency,
+                        frequency_unit=frequency_unit, frequency_other=frequency_other,
+                        precision=precision, truncation=truncation,
+                        precision_other=precision_other, goal=goal, 
+                        if_battery_present=list_of_attributes[0], battery_health=list_of_attributes[1],
+                        battery_level=list_of_attributes[2], battery_plug_type=list_of_attributes[3],
+                        battery_status=list_of_attributes[4], battery_technology=list_of_attributes[5])
+
+          elif senor_name == 'signalstrength':
+            sensor = Signal_strengths(experiment_id=experiment, frequency=frequency,
+                        frequency_unit=frequency_unit, frequency_other=frequency_other,
+                        precision=precision, truncation=truncation,
+                        precision_other=precision_other, goal=goal, 
+                        signal_strength=list_of_attributes[0])
+
+          elif senor_name == 'wifi':
+            sensor = Wifi(experiment_id=experiment, frequency=frequency,
+                        frequency_unit=frequency_unit, frequency_other=frequency_other,
+                        precision=precision, truncation=truncation,
+                        precision_other=precision_other, goal=goal, 
+                        Wifi_state=list_of_attributes[0], Wifi_ip_address=list_of_attributes[1],
+                        Wifi_link_speed=list_of_attributes[2], Wifi_supplicant_state=list_of_attributes[3],
+                        Wifi_ssid=list_of_attributes[4], Wifi_rssi=list_of_attributes[5], 
+                        Wifi_scan_results=list_of_attributes[6])
+            
+          sensor.save()
           
   
   except:
