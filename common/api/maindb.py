@@ -346,7 +346,7 @@ def create_sensor(senor_name,experiment,frequency,frequency_unit,frequency_other
           if senor_name == 'battery':
             sensor = Battery(experiment_id=experiment, frequency=frequency,
                         frequency_unit=frequency_unit, frequency_other=frequency_other,
-                        precision=precision_other, truncation= truncation,
+                        precision=precision, truncation=truncation,
                         precision_other=precision_other, goal=goal, 
                         if_battery_present=list_of_attributes[0], battery_health=list_of_attributes[1],
                         battery_level=list_of_attributes[2], battery_plug_type=list_of_attributes[3],

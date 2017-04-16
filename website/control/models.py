@@ -171,8 +171,8 @@ class Sensor(models.Model):
   # Any level of frequency that we do not support?
   frequency_other = models.CharField(max_length=512, default=None, blank=True)
 
-  # How precise
-  precision = models.IntegerField(default=None, blank=True)
+  # How precise truncation/full
+  precision = models.CharField(max_length=512, default=None, blank=True)
 
   #truncation
   truncation = models.IntegerField(default=None, blank=True)

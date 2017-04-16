@@ -87,6 +87,7 @@ rsa = dy_import_module("rsa.r2py")
 
 from clearinghouse.website.control.models import Experiment
 from clearinghouse.website.control.models import Sensor
+from clearinghouse.website.control.models import Battery
 
 
 
@@ -1103,8 +1104,12 @@ def registerexperiment(request):
   page_top_errors = []
   username = user.username
   ret =['testA'] #test list
+  ret.append("EXPERIMENTS")
   ret.append(Experiment.objects.all())
+  ret.append("SENSORS")
   ret.append(Sensor.objects.all())
+  ret.append("Battery sensor")
+  ret.append(Battery.objects.all())
       
   if request.method == 'POST':
     # create a form instance and populate it with data from the request:
