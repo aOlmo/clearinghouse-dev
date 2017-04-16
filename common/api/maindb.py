@@ -358,7 +358,7 @@ def create_sensor(senor_name,experiment,frequency,frequency_unit,frequency_other
                         precision=precision, truncation=truncation,
                         precision_other=precision_other, goal=goal, 
                         bluetooth_state=list_of_attributes[0], bluetooth_is_discovering=list_of_attributes[1],
-                        bluetooth_sacn_mode=list_of_attributes[2], bluetooth_local_address=list_of_attributes[3],
+                        bluetooth_scan_mode=list_of_attributes[2], bluetooth_local_address=list_of_attributes[3],
                         bluetooth_local_name=list_of_attributes[4])
 
           elif senor_name == 'cellular':
@@ -385,7 +385,7 @@ def create_sensor(senor_name,experiment,frequency,frequency_unit,frequency_other
                         frequency_unit=frequency_unit, frequency_other=frequency_other,
                         precision=precision, truncation=truncation,
                         precision_other=precision_other, goal=goal, 
-                        settings_airplane_mode=list_of_attributes[0], settings_ringer_slient_mode=list_of_attributes[1],
+                        settings_airplane_mode=list_of_attributes[0], settings_ringer_silent_mode=list_of_attributes[1],
                         settings_screen_on=list_of_attributes[2], settings_max_media_volume=list_of_attributes[3],
                         settings_max_ringer_volume=list_of_attributes[4], settings_media_volume=list_of_attributes[5], 
                         settings_ringer_volume =list_of_attributes[6], settings_screen_brightness=list_of_attributes[7], 
@@ -396,9 +396,9 @@ def create_sensor(senor_name,experiment,frequency,frequency_unit,frequency_other
                         frequency_unit=frequency_unit, frequency_other=frequency_other,
                         precision=precision, truncation=truncation,
                         precision_other=precision_other, goal=goal, 
-                        if_battery_present=list_of_attributes[0], battery_health=list_of_attributes[1],
-                        battery_level=list_of_attributes[2], battery_plug_type=list_of_attributes[3],
-                        battery_status=list_of_attributes[4], battery_technology=list_of_attributes[5])
+                        concretSensors=list_of_attributes[0], concretSensor_accuracy=list_of_attributes[1],
+                        concretSensor_light=list_of_attributes[2], concretSensor_acceleromoter=list_of_attributes[3],
+                        concretSensor_magnetometer=list_of_attributes[4], concretSensor_orientation=list_of_attributes[5])
 
           elif senor_name == 'signalstrength':
             sensor = Signal_strengths(experiment_id=experiment, frequency=frequency,

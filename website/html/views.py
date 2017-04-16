@@ -86,8 +86,14 @@ rsa = dy_import_module("rsa.r2py")
 
 
 from clearinghouse.website.control.models import Experiment
-from clearinghouse.website.control.models import Sensor
 from clearinghouse.website.control.models import Battery
+from clearinghouse.website.control.models import Bluetooth
+from clearinghouse.website.control.models import Cellular
+from clearinghouse.website.control.models import Location
+from clearinghouse.website.control.models import Settings
+from clearinghouse.website.control.models import ConcretSensor
+from clearinghouse.website.control.models import Signal_strengths
+from clearinghouse.website.control.models import Wifi
 
 
 
@@ -1106,10 +1112,22 @@ def registerexperiment(request):
   ret =['testA'] #test list
   ret.append("EXPERIMENTS")
   ret.append(Experiment.objects.all())
-  ret.append("SENSORS")
-  ret.append(Sensor.objects.all())
   ret.append("Battery sensor")
   ret.append(Battery.objects.all())
+  ret.append("Blue sensor")
+  ret.append(Bluetooth.objects.all())
+  ret.append("Cellular sensor")
+  ret.append(Cellular.objects.all())
+  ret.append("Location sensor")
+  ret.append(Location.objects.all())
+  ret.append("Settings sensor")
+  ret.append(Settings.objects.all())
+  ret.append("Concret sensor")
+  ret.append(ConcretSensor.objects.all())
+  ret.append("Battery sensor")
+  ret.append(Signal_strengths.objects.all())
+  ret.append("Wifi sensor")
+  ret.append(Wifi.objects.all())
       
   if request.method == 'POST':
     # create a form instance and populate it with data from the request:
@@ -1288,8 +1306,8 @@ def registerexperiment(request):
                                             cellular_frequency_unit,cellular_frequency_other,
                                             cellular_precision,cellular_truncation, cellular_precision_other,
                                             cellular_goal,[network_roaming,cellID,location_area_code,
-                                            mobile_country_code,mobile_network_code,network_operator,network_operator_name
-                                            network_type,service_state,signal_strengths])
+                                            mobile_country_code,mobile_network_code,network_operator,
+                                            network_operator_name, network_type,service_state,signal_strengths])
               except ValidationError, err:
                 page_top_errors.append(str(err))
 
@@ -1334,8 +1352,8 @@ def registerexperiment(request):
                 location = interface.register_sensor('location',experiment,location_frequency,
                                             location_frequency_unit,location_frequency_other,
                                             location_precision,location_truncation, location_precision_other,
-                                            location_goal,[location_providers,location_provider_enabled,location_data,
-                                            last_known_location,geocode])
+                                            location_goal,[location_providers,location_provider_enabled,
+                                            location_data,last_known_location,geocode])
               except ValidationError, err:
                 page_top_errors.append(str(err))
 
@@ -1387,7 +1405,7 @@ def registerexperiment(request):
                                             settings_frequency_unit,settings_frequency_other,
                                             settings_precision,settings_truncation, settings_precision_other,
                                             settings_goal,[airplane_mode,ringer_silent_mode,screen_on,
-                                            max_media_volume,max_ringer_volume,media_volume,ringer_volume
+                                            max_media_volume,max_ringer_volume,media_volume,ringer_volume,
                                             screen_brightness,screen_timeout])
               except ValidationError, err:
                 page_top_errors.append(str(err))
@@ -1490,6 +1508,7 @@ def registerexperiment(request):
             supplicant_state = wifi_form.is_required('supplicant_state')
             ssid = wifi_form.is_required('ssid')
             rssi = wifi_form.is_required('rssi')
+            scan_results = wifi_form.is_required('scan_results')
             #check general sensor atributes
             wifi_frequency = wifi_form.cleaned_data['frequency']
             wifi_frequency_unit = wifi_form.cleaned_data['frequency_unit']
@@ -1521,7 +1540,7 @@ def registerexperiment(request):
                                             cellular_frequency_unit,cellular_frequency_other,
                                             cellular_precision,cellular_truncation, cellular_precision_other,
                                             cellular_goal,[wifi_state,ip_address,link_speed,
-                                            supplicant_state,ssid,rssi])
+                                            supplicant_state,ssid,rssi,scan_results])
               except ValidationError, err:
                 page_top_errors.append(str(err))
 
