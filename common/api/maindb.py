@@ -294,6 +294,7 @@ def create_experiment(geni_user,experiment_name,researcher_name,researcher_addre
                               researcher_name=researcher_name, researcher_institution_name = irb_name,
                               researcher_email=researcher_email, researcher_address=researcher_address,
                               irb_officer_email=irb_email, goal=experiment_goal)   
+          
           experiment.save()
   except:
     transaction.rollback()
@@ -328,7 +329,7 @@ def create_sensor(senor_name,experiment,frequency,frequency_unit,frequency_other
       Does not change the database if creation of either record fails.
       
     <Returns>
-      A GeniUser object of the newly created user.
+      A Sensor object of the newly created user.
   """
   assert_str(frequency_unit)
   assert_str(frequency_other)
@@ -343,13 +344,14 @@ def create_sensor(senor_name,experiment,frequency,frequency_unit,frequency_other
       with transaction.atomic():
           # Create the Object
           if senor_name == 'battery':
-            sensor = Battery(experiment_id=experiment.id, frequency=frequency,
-                        frequency_uni=frequency_unit, frequency_other=frequency_other,
+            sensor = Battery(experiment_id=experiment, frequency=frequency,
+                        frequency_unit=frequency_unit, frequency_other=frequency_other,
                         precision=precision_other, truncation= truncation,
                         precision_other=precision_other, goal=goal, 
                         if_battery_present=list_of_attributes[0], battery_health=list_of_attributes[1],
                         battery_level=list_of_attributes[2], battery_plug_type=list_of_attributes[3],
                         battery_status=list_of_attributes[4], battery_technology=list_of_attributes[5])
+            sensor.save()
           
   
   except:

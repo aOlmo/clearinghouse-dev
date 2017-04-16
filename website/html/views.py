@@ -85,7 +85,8 @@ rsa = dy_import_module("rsa.r2py")
 
 
 
-
+from clearinghouse.website.control.models import Experiment
+from clearinghouse.website.control.models import Sensor
 
 
 
@@ -1101,7 +1102,9 @@ def registerexperiment(request):
 
   page_top_errors = []
   username = user.username
-  ret =['test'] #test list
+  ret =['testA'] #test list
+  ret.append(Experiment.objects.all())
+  ret.append(Sensor.objects.all())
       
   if request.method == 'POST':
     # create a form instance and populate it with data from the request:
@@ -1155,7 +1158,7 @@ def registerexperiment(request):
             battery_truncation = battery_form.cleaned_data['truncation']
             battery_precision_other = battery_form.cleaned_data['precision_other']
             battery_goal = battery_form.cleaned_data['goal']
-
+        
             if battery_frequency == None: #if the user doesnt set frequency
               battery_frequency = 0 #we set it to 0
               if battery_frequency_other == '':#if he doesnt provide any other informatio either

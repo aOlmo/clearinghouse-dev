@@ -160,7 +160,7 @@ class Sensor(models.Model):
   """
 
   # Which experiment requests this sensor?
-  experiment_id = models.ForeignKey(Experiment, db_index=True);
+  experiment_id = models.ForeignKey(Experiment, db_index=True, default=None)
 
   # How frequently is this sensor data pulled/requested?
   frequency = models.IntegerField(default=None, blank=True)
@@ -691,7 +691,7 @@ class ActionLogVesselDetails(models.Model):
 
   # To know the port despite the fact that this may change for the
   # node record itself.
-  node_port = models.IntegerField("Node port", max_length=100, db_index=True)
+  node_port = models.IntegerField("Node port", db_index=True)
 
   # We store the vessel name rather than a foreign key to the vessels table
   # because vessels can be deleted from the database, whereas nodes can't.
