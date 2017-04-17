@@ -1579,7 +1579,7 @@ def viewexperiments(request):
 
   page_top_errors = []
   username = user.username
-  ret = [] #test list
+  ret = [] #returning list
   user_experiments = Experiment.objects.filter(geni_user=user)
   for experiment in user_experiments:
     experiment_sensors = []
@@ -1592,8 +1592,13 @@ def viewexperiments(request):
     experiment_sensors.extend(list(Location.objects.filter(experiment_id=experiment)))
     experiment_sensors.extend(list(Signal_strengths.objects.filter(experiment_id=experiment)))
     experiment_sensors.extend(list(Wifi.objects.filter(experiment_id=experiment)))
+
     for sensor in experiment_sensors:
       name_list.append(sensor.show_name())
+
+    if name_list == []:
+      name_list = "None"
+
     ret.append([experiment.expe_name,name_list])
     
     
