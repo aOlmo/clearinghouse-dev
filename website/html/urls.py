@@ -29,6 +29,7 @@ urlpatterns = patterns('clearinghouse.website.html.views',
                        (r'^profile$', htmlviews.profile, {}, 'profile'),  # was user_info
                        # show the expriment registration page for this user
                        (r'^registerexperiment$', htmlviews.registerexperiment, {}, 'registerexperiment'),
+                       (r'^viewexperiments$', htmlviews.viewexperiments, {}, 'viewexperiments'),
                        # OpenID/OAuth auto registered users get sent here after creation
                        # (r'^new_auto_register_user$', 'new_auto_register_user', {}, 'new_auto_register_user'), #currently not used
                        # show the used resources page (with all the currently acquired vessels)

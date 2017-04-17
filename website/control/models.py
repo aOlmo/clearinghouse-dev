@@ -211,6 +211,12 @@ class Battery(Sensor):
   # Need technology of battery?
   battery_technology = models.BooleanField(default=False)   
 
+  def show_name(self):
+    """
+    Produce a string representation of the instance.
+    """
+    return "Battery"
+
 
 class Bluetooth(Sensor):
   """
@@ -230,6 +236,12 @@ class Bluetooth(Sensor):
 
   # Need visible device name?
   bluetooth_local_name = models.BooleanField(default=False)
+
+  def show_name(self):
+    """
+    Produce a string representation of the instance.
+    """
+    return "Bluetooth"
 
 
 class Cellular(Sensor):
@@ -266,7 +278,11 @@ class Cellular(Sensor):
   # Need the signal strength?
   cellular_signal_strengths = models.BooleanField(default=False)
 
-
+  def show_name(self):
+    """
+    Produce a string representation of the instance.
+    """
+    return "Cellular"
 
 
 
@@ -286,7 +302,11 @@ class Location(Sensor):
   # Need geocode?
   location_geocode = models.BooleanField(default=False)
 
-
+  def show_name(self):
+    """
+    Produce a string representation of the instance.
+    """
+    return "Location"
 
 
 
@@ -321,7 +341,11 @@ class Settings(Sensor):
   # Need screen timeout?
   settings_screen_tiemout = models.BooleanField(default=False)
 
-
+  def show_name(self):
+    """
+    Produce a string representation of the instance.
+    """
+    return "Settings"
 
 
 
@@ -347,7 +371,11 @@ class ConcretSensor(Sensor):
   # Need most recently received orientation value?
   concretSensor_orientation = models.BooleanField(default=False)
 
-
+  def show_name(self):
+    """
+    Produce a string representation of the instance.
+    """
+    return "Concret Sensor"
 
 
 
@@ -359,7 +387,11 @@ class Signal_strengths(Sensor):
   signal_strength = models.BooleanField(default=False)
 
 
-
+  def show_name(self):
+    """
+    Produce a string representation of the instance.
+    """
+    return "Signal strength"
 
 
 class Wifi(Sensor):
@@ -391,6 +423,11 @@ class Wifi(Sensor):
   # Need scan results?
   Wifi_scan_results = models.BooleanField(default=False)
 
+  def show_name(self):
+    """
+    Produce a string representation of the instance.
+    """
+    return "Wifi"
 
 
 class Node(models.Model):

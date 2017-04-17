@@ -86,6 +86,7 @@ rsa = dy_import_module("rsa.r2py")
 
 
 from clearinghouse.website.control.models import Experiment
+from clearinghouse.website.control.models import Sensor
 from clearinghouse.website.control.models import Battery
 from clearinghouse.website.control.models import Bluetooth
 from clearinghouse.website.control.models import Cellular
@@ -1110,24 +1111,6 @@ def registerexperiment(request):
   page_top_errors = []
   username = user.username
   ret =['testA'] #test list
-  ret.append("EXPERIMENTS")
-  ret.append(Experiment.objects.all())
-  ret.append("Battery sensor")
-  ret.append(Battery.objects.all())
-  ret.append("Blue sensor")
-  ret.append(Bluetooth.objects.all())
-  ret.append("Cellular sensor")
-  ret.append(Cellular.objects.all())
-  ret.append("Location sensor")
-  ret.append(Location.objects.all())
-  ret.append("Settings sensor")
-  ret.append(Settings.objects.all())
-  ret.append("Concret sensor")
-  ret.append(ConcretSensor.objects.all())
-  ret.append("Battery sensor")
-  ret.append(Signal_strengths.objects.all())
-  ret.append("Wifi sensor")
-  ret.append(Wifi.objects.all())
       
   if request.method == 'POST':
     # create a form instance and populate it with data from the request:
@@ -1549,7 +1532,7 @@ def registerexperiment(request):
 
         if page_top_errors == []: #all data have been saved succesfully
           #redirect to the help page just as a test
-          return HttpResponseRedirect(reverse("help")) 
+          return HttpResponseRedirect(reverse("viewexperiments")) 
               
     else: #if r_form is not valid
       page_top_errors.append("Basic information of the experiment is not valid")
@@ -1572,7 +1555,51 @@ def registerexperiment(request):
                 'settings_form': settings_form, 'sensor_form': sensor_form, 
                 'signalstrength_form': signalstrength_form, 'wifi_form': wifi_form, 
                 'r_form': r_form, 'ret': ret, 'page_top_errors':page_top_errors})
- 
+
+
+
+
+@login_required
+def viewexperiments(request):
+  """
+  <Purpose>
+      Show the Experiments Registrated 
+  <Returns>
+     Experimenr objects
+  """
+  # Obtain the context from the HTTP request.
+
+  context_instance = RequestContext(request)
+
+  try:
+    user = _validate_and_get_geniuser(request)
+  except LoggedInButFailedGetGeniUserError:
+    return _show_failed_get_geniuser_page(request)
+
+
+  page_top_errors = []
+  username = user.username
+  ret = [] #test list
+  user_experiments = Experiment.objects.filter(geni_user=user)
+  for experiment in user_experiments:
+    experiment_sensors = []
+    name_list = []
+    experiment_sensors.extend(list(Battery.objects.filter(experiment_id=experiment)))
+    experiment_sensors.extend(list(Bluetooth.objects.filter(experiment_id=experiment)))
+    experiment_sensors.extend(list(Cellular.objects.filter(experiment_id=experiment)))
+    experiment_sensors.extend(list(Settings.objects.filter(experiment_id=experiment)))
+    experiment_sensors.extend(list(ConcretSensor.objects.filter(experiment_id=experiment)))
+    experiment_sensors.extend(list(Location.objects.filter(experiment_id=experiment)))
+    experiment_sensors.extend(list(Signal_strengths.objects.filter(experiment_id=experiment)))
+    experiment_sensors.extend(list(Wifi.objects.filter(experiment_id=experiment)))
+    for sensor in experiment_sensors:
+      name_list.append(sensor.show_name())
+    ret.append([experiment.expe_name,name_list])
+    
+    
+  
+  return render(request, 'control/viewexperiments.html', {'username' : username, 
+            'page_top_errors' : page_top_errors, 'ret':ret})
 
 
 

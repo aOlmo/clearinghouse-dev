@@ -48,6 +48,10 @@
                         <td><a href="{% url 'registerexperiment' %}">Register Experiment</a></td>
                     {% endblock nav_register_expe %}
 
+                    {% block nav_view_expe%}
+                        <td><a href="{% url 'viewexperiments' %}">View Experiment</a></td>
+                    {% endblock nav_view_expe%}
+
                     {% block nav_myvessels %}
                         <td><a href="{% url 'myvessels' %}">My Vessels</a></td>
                     {% endblock nav_myvessels %}
