@@ -1134,6 +1134,8 @@ def registerexperiment(request):
       irb = r_form.cleaned_data['researcher_institution_name']
       irb_email = r_form.cleaned_data['irb_officer_email']
       goal = r_form.cleaned_data['goal']
+      if r_form.is_required('terms_of_use') == False:
+        page_top_errors.append("Please accept the terms of use")
 
       try:
         # we should never error here, since we've already finished validation at this point.
@@ -1581,7 +1583,8 @@ def viewexperiments(request):
   username = user.username
   ret = [] #returning list
   user_experiments = Experiment.objects.filter(geni_user=user)
-  for experiment in user_experiments:
+  for experiment in reversed(user_experiments):
+    #reversed so the oldest experiment is the last we show.
     experiment_sensors = []
     name_list = []
     experiment_sensors.extend(list(Battery.objects.filter(experiment_id=experiment)))

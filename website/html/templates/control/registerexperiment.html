@@ -66,20 +66,25 @@
                                 {% endif %}
 
                                 <div id="middle">
+                                <h1>Register your experiment</h1>
                                 <h2> 1. Provide your basic information (all fields are mandatory) </h2><br>
                                 Any researcher who would like to perform experiments using smartphone sensors may register on the Sensibility Testbed Clearinghouse site.<br><br>
                                 <form action="{% url 'registerexperiment' %}" method="post">
 
                                     {% csrf_token %}
-                                    {% for s in ret %}
-                                        sensor : {{s}}<br>
-                                    {%endfor%}
-
                                     <!--Register experiment form-->
                                     {{ r_form.management_form }}
-                                    {% for question in r_form %}
-                                        {{question.label_tag}} {{question}}<br>
-                                    {% endfor %}<br><br>
+                                    {{r_form.expe_name.label_tag}} {{r_form.expe_name}}<br>
+                                    {{r_form.researcher_name.label_tag}} {{r_form.researcher_name}}<br>
+                                    {{r_form.researcher_address.label_tag}} {{r_form.researcher_address}}<br>
+                                    {{r_form.researcher_email.label_tag}} {{r_form.researcher_email}}<br>
+                                    {{r_form.researcher_institution_name.label_tag}} {{r_form.researcher_institution_name}}<br>
+                                    {{r_form.irb_officer_email.label_tag}} {{r_form.irb_officer_email}}<br>
+
+                                    <h2> 2. Provide details of your experiment </h2>
+                                    {{r_form.goal.label_tag}} {{r_form.goal}}<br><br>
+
+                                    B. What type(s) of smartphone sensors will you use (check all that apply)? A list of available sensors may be found at:  <a href = "https://sensibilitytestbed.com/projects/project/wiki/sensors"> Sensors</a><br><br>
 
                                     <!--Battery form-->
                                     {{ battery_form.errors }}
@@ -253,6 +258,20 @@
                                     &emsp;&emsp;{{wifi_form.goal.label_tag}}<br>
                                     &emsp;&emsp;&emsp;{{wifi_form.goal}} <br><br><br><br>
 
+                                    <h2> 3. I have read and agree to the Terms of Use for Researchers</h2>
+
+                                    {{r_form.terms_of_use.label_tag}} {{r_form.terms_of_use}} 
+
+                                    <h2> 4. Complete your IRB (Institutional Review Board) application</h2>
+
+                                    {{r_form.generate_irb_text.label_tag}} {{r_form.generate_irb_text}}<br><br>
+
+                                    Are you waiting for IRB approval from your institution? In the interim you may experiment on the Sensibility Testbed using your own device by visiting <a href = "https://sensibilitytestbed.com/projects/project">here</a> .
+
+                                    <h2> 5. My IRB approved my experiment and and I am ready to run it! </h2>
+                                    Once we document your IRB approval letter in our database, we will email
+                                    you your account information (username/password) as well as any other 
+                                    necessary information needed to run your experiment.<br>
 
                                 
                                     

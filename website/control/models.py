@@ -144,6 +144,12 @@ class Experiment(models.Model):
   # The main goal of the experiment
   goal = models.CharField(max_length=256, default = None)
 
+  #What data will be downloaded
+  #data_downloaded = models.CharField(max_length=256, default = None)
+
+  #Where is the data going to be stored
+  #sstore_data = models.CharField(max_length=256, default = None)
+
   def __unicode__(self):
     """
     Produce a string representation of the GeniUser instance.

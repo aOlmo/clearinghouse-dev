@@ -285,6 +285,7 @@ def create_experiment(geni_user,experiment_name,researcher_name,researcher_addre
   assert_str(irb_email)
   assert_str(experiment_goal)
 
+
   # We're committing manually to make sure the multiple database writes are
   # atomic. (That is, regenerate_api_key() will do a database write.)
   try:

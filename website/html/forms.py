@@ -82,13 +82,15 @@ class RegisterExperimentForm(forms.ModelForm):
    error_messages={'required': 'Enter an E-mail Address'}, required = True)
   researcher_institution_name = forms.CharField(label="Name of home institution's IRB officer or contact person", 
     error_messages={'required': 'Name of home institutions IRB officer or contact person'}, required = True)
-  irb_officer_email = forms.CharField(label="Email address of of home institution's IRB officer or contact person", 
+  irb_officer_email = forms.CharField(label="Email address of home institution's IRB officer or contact person", 
     widget=forms.EmailInput(attrs={'class': 'form-control','pattern': "(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"}), 
     error_messages={'required': 'Enter an E-mail Address'}, required = True)
-  goal = forms.CharField(label="What is the goal of your research experiment? What do you want to find out?",
+  goal = forms.CharField(label="A. What is the goal of your research experiment? What do you want to find out?",
     widget=forms.Textarea(attrs={'class': 'form-control', 'rows':1,'placeholder': 'Enter the goal of your Experiment'}),
     error_messages={'required': 'Enter the goal of your research experiment'}, max_length=256, required = True)
-
+  terms_of_use = forms.BooleanField(label="accept", required=False)
+  generate_irb_text = forms.BooleanField(label="Generate basic text for my IRB application", required=False)
+  
   def clean_expe_name(self):
     value = self.cleaned_data['expe_name']
     if value == '':
@@ -147,6 +149,11 @@ class RegisterExperimentForm(forms.ModelForm):
       raise forms.ValidationError, str(err)
     return value
 
+  def is_required(self, v):
+    value = self.cleaned_data[v]
+    if value == 'True' or value == True:
+      return True
+    return False
 
 
 
@@ -176,6 +183,8 @@ class GeneralSensorAtributesForm(forms.ModelForm):
   goal = forms.CharField(label="iii. What will this sensor used for?",
     widget=forms.Textarea(attrs={'class': 'form-control', 'rows':1,'placeholder': 'Enter the goal of your Experiment'}),
     error_messages={'required': 'Enter the goal of your research experiment'}, max_length=256, required=False)
+
+
 
   def is_required(self, v):
     value = self.cleaned_data[v]
