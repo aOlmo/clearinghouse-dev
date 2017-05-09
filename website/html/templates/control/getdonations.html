@@ -1,5 +1,6 @@
 {% extends "control/control_base.html" %}
 
+
 {% block title %}
 Get Donations - {{ TESTBED }} {{ CLEARINGHOUSE }}
 {% endblock title %}
@@ -7,12 +8,14 @@ Get Donations - {{ TESTBED }} {{ CLEARINGHOUSE }}
 {% block style %}
 {{ block.super }}
 <link href="{{ MEDIA_URL }}css/download.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/download_installers.css" />
 {% endblock style %}
 
 {% block script %}
 {{ block.super }}
 <script type="text/javascript" src="{{ MEDIA_URL }}scripts/jqbrowser.js" charset="utf-8"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}scripts/download.js" charset="utf-8"></script>
+<script type="text/javascript" src="{{ MEDIA_URL}}scripts/qrcode.min.js"></script>
 {% endblock script %}
 
 {% block nav_getdonations %}
@@ -22,11 +25,16 @@ Get Donations - {{ TESTBED }} {{ CLEARINGHOUSE }}
 {% block content %}
 	<div id="main">
 		<div id="middle">
-			<div id="downloadlink">
-				<p>Give this link to others so they can donate on your behalf:</p>
-				<a href="{% url 'installers' username %}">{{ domain }}{% url 'installers' username %}</a>
-			</div>
-			{% include "common/installers.html" %}
+			<div>This address is your custom installer download URL. Use it when setting up Sensiblity Testbed on your Android device. (To save you some typing, you may scan the QR code that encodes the URL).</div>
+			<a class="share-url round_shadow" href="https://sensibilityclearinghouse.poly.edu/custominstallerbuilder/808611de70db9450eb7f10f924b75090b033aaf2/">https://sensibilityclearinghouse.poly.edu/custominstallerbuilder/808611de70db9450eb7f10f924b75090b033aaf2/</a>
+			<div id="qrcode"></div>
+			<script type="text/javascript">
+				new QRCode(document.getElementById("qrcode"), {
+					text: "https://sensibilityclearinghouse.poly.edu/custominstallerbuilder/808611de70db9450eb7f10f924b75090b033aaf2/",
+					width: 256,
+					height: 256
+				});
+			</script>
 		</div>
 	</div>
 

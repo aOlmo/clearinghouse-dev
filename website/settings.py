@@ -48,7 +48,7 @@ SEATTLECLEARINGHOUSE_STATE_KEYS_DIR = os.path.join(SEATTLECLEARINGHOUSE_WEBSITE_
 # For a guide to setting up your own CIB instance, see:
 #   https://seattle.poly.edu/wiki/CustomInstallerBuilderInstallation
 # SEATTLECLEARINGHOUSE_INSTALLER_BUILDER_XMLRPC = "https://custombuilder.poly.edu/custom_install/xmlrpc/" # Default, currently no repy_v2 support
-SEATTLECLEARINGHOUSE_INSTALLER_BUILDER_XMLRPC = "https://sensibilityclearinghouse.poly.edu/custominstallerbuilder/xmlrpc/" # SensibilityTestbed's CIB, which supports repy_v2 and thereby NAT traversal.
+SEATTLECLEARINGHOUSE_INSTALLER_BUILDER_XMLRPC = "https://alpha-ch.poly.edu/cib/xmlrpc/" # SensibilityTestbed's CIB, which supports repy_v2 and thereby NAT traversal.
 
 # Not currently used. This is left in for legacy installs
 # The directory where the base installers named seattle_linux.tgz, seattle_mac.tgz,
@@ -287,7 +287,7 @@ SESSION_COOKIE_AGE = 3600
 # Use session cookies, not persistent cookies.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-TESTBED = 'Seattle'
+TESTBED = 'Sensibility'
 TESTBED_URL = 'https://seattle.poly.edu/'
 TESTBED_DEVELOPERS_MAIL = 'mailto:seattle-devel@googlegroups.com'
 TESTBED_USERS_MAIL = 'mailto:seattle-devel@googlegroups.com'

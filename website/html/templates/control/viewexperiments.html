@@ -60,10 +60,23 @@
                                      </p>
                                 {% endif %}
                                 <div id="middle">
-                                    <h2>Experiments and sensors you have registered</h2>
-                                    {% for list in ret %} 
+                                    <h1>View your experiments</h1>
+                                    <h2>Experiments and sensors you have registered</h2><br><br>
+                                    <table class="profile">
+                                    {% for list in ret %}
+                                        {% if forloop.counter|divisibleby:2 %}
+                                            <tr class="odd">
+                                        {% else %}
+                                            <tr class="odd">
+                                        {% endif %} 
+
                                         Experiment name : {{list.0}}<br>
-                                        Sensors : {{list.1}}<br><br><br>
+                                        Sensors : {{list.1}}<br>
+                                        <div align="right"><a href="">Delete</a></div><br><br>
+
+                                        </tr>
+                                    </table>
+
                                     {%endfor%}
                                 </div>
                             </div>

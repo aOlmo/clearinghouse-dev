@@ -116,9 +116,9 @@ def create_lockserver_handle(lockserver_url=LOCKSERVER_URL):
   except xmlrpclib.Fault:
     raise ProgrammerError("The lockserver rejected the request: " + traceback.format_exc())
   except xmlrpclib.ProtocolError:
-    raise InternalError("Unable to communicate with the lockserver: " + traceback.format_exc())
+    raise InternalError("Unable to communicate with the lockserver (protocol): " + traceback.format_exc())
   except socket.error:
-    raise InternalError("Unable to communicate with the lockserver: " + traceback.format_exc())
+    raise InternalError("Unable to communicate with the lockserver (socket): " + traceback.format_exc())
   
   return lockserver_handle
 

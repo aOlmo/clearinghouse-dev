@@ -96,6 +96,9 @@ from clearinghouse.website.control.models import ConcretSensor
 from clearinghouse.website.control.models import Signal_strengths
 from clearinghouse.website.control.models import Wifi
 
+#for user get donations
+from clearinghouse.common.util.build_manager import BuildManager 
+
 
 
 
@@ -1602,13 +1605,12 @@ def viewexperiments(request):
     if name_list == []:
       name_list = "None"
 
-    ret.append([experiment.expe_name,name_list])
+    ret.append([experiment.expe_name,name_list,experiment.id])
     
     
   
   return render(request, 'control/viewexperiments.html', {'username' : username, 
             'page_top_errors' : page_top_errors, 'ret':ret})
-
 
 
 
@@ -1664,6 +1666,60 @@ def _build_installer(username, platform):
 
   installer_url = build_results['installers'][platform]
   return True, installer_url
+
+def download_installers_page(request, build_id):
+  """
+  <Purpose>
+    Renders the installer package download page.
+  <Arguments>
+    request:
+      A Django request.
+    build_id:
+      The build ID of the results to display.
+  <Exceptions>
+    None.
+  <Side Effects>
+    None.
+  <Returns>
+    A Django response.
+  """
+
+  manager = BuildManager(build_id=build_id)
+
+  # Invalid build IDs should results in an error.
+  if not os.path.isdir(manager.get_build_directory()):
+    raise Http404
+    
+  # Compile the list of links of where to find the installers and cryptographic
+  # key archives.
+  installer_links = manager.get_urls()
+    
+  # If there is a query string appended to the current URL, we don't want that
+  # in the share-this-URL box.
+  share_url = request.build_absolute_uri().split('?')[0]
+  
+  # Only show the progress bar if the user has built this installer himself.
+  # Otherwise, we assume the user has shared this link with a friend.
+  step = None
+  user_built = False
+  
+  if 'build_results' in request.session:
+    if build_id in request.session['build_results']:
+      step = 'installers'
+      user_built = True
+
+      # If we serve a fast_lane_build we don't show the breadcrumbs
+      if 'fast_lane_build' in request.session['build_results'][build_id]:
+        step = False
+
+  return render(request, 'get_donations.html',
+      {
+        'build_id': build_id,
+        'installers': installer_links,
+        'share_url': share_url,
+        'step': step,
+        'user_built': user_built,
+      })
 
 
 
