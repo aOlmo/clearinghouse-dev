@@ -973,7 +973,7 @@ def build_android_installer(request, username):
     return error_response
 
   installer_url = return_value
-  return HttpResponseRedirect(installer_url)
+  return installer_url
 
 
 
@@ -1611,6 +1611,30 @@ def viewexperiments(request):
   
   return render(request, 'control/viewexperiments.html', {'username' : username, 
             'page_top_errors' : page_top_errors, 'ret':ret})
+
+
+
+def getdonations(request):
+
+  context_instance = RequestContext(request)
+
+  try:
+    user = _validate_and_get_geniuser(request)
+  except LoggedInButFailedGetGeniUserError:
+    return _show_failed_get_geniuser_page(request)
+
+  username = user.username
+
+  try:
+    android = build_android_installer(request, username)
+    
+  except:
+    android = "Failed to build installer.1"
+
+  return render(request, 'control/getdonations.html', {'username' : username, 
+            'android' : android})
+
+
 
 
 

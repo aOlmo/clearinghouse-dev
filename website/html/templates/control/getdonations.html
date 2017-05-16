@@ -26,11 +26,11 @@ Get Donations - {{ TESTBED }} {{ CLEARINGHOUSE }}
 	<div id="main">
 		<div id="middle">
 			<div>This address is your custom installer download URL. Use it when setting up Sensiblity Testbed on your Android device. (To save you some typing, you may scan the QR code that encodes the URL).</div>
-			<a class="share-url round_shadow" href="https://sensibilityclearinghouse.poly.edu/custominstallerbuilder/808611de70db9450eb7f10f924b75090b033aaf2/">https://sensibilityclearinghouse.poly.edu/custominstallerbuilder/808611de70db9450eb7f10f924b75090b033aaf2/</a>
+			<a class="share-url round_shadow" href={{ android }}>{{ android }}</a>
 			<div id="qrcode"></div>
 			<script type="text/javascript">
 				new QRCode(document.getElementById("qrcode"), {
-					text: "https://sensibilityclearinghouse.poly.edu/custominstallerbuilder/808611de70db9450eb7f10f924b75090b033aaf2/",
+					text: "{{ android }}",
 					width: 256,
 					height: 256
 				});

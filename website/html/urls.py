@@ -40,7 +40,6 @@ urlpatterns = patterns('clearinghouse.website.html.views',
                        # getdonations page (to download installers)
                        (r'^getdonations$', htmlviews.getdonations, {},
                         'getdonations'),
-
                        # 'My GENI' page functions:
                        # get new resources (from form)
                        (r'^get_resources$', htmlviews.get_resources, {},
@@ -64,6 +63,7 @@ urlpatterns = patterns('clearinghouse.website.html.views',
 
                        # Display and allow changing the API key.
                        (r'^api_info$', htmlviews.api_info, {}, 'api_info'),
+
 
                        # Form to generate or upload a new key.
                        (r'^change_key$', htmlviews.change_key, {},
