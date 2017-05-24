@@ -3,7 +3,7 @@
  * need transactions because we only make very simple single-query database
  * writes.
  */
-CREATE TABLE IF NOT EXISTS `keydb` (
+CREATE TABLE IF NOT EXISTS `keys` (
   `id` int(10) unsigned NOT NULL auto_increment,
   /* `pubkeyhash` is never read by our code. We only use it to ensure unique
    * public keys, and the `pubkey` field is too long to specify as unique

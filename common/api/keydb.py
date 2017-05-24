@@ -95,7 +95,7 @@ def get_private_key(pubkey):
   try:
     try:
       # Note: `keys` is a reserved mysql keyword so must be quoted.
-      cursor.execute("SELECT privkey FROM `keys` WHERE pubkey = %s", (pubkey))
+      cursor.execute("SELECT privkey FROM `keys` WHERE pubkey = %s", [pubkey])
     except MySQLdb.Error:
       raise InternalError("Failed getting private key: " + traceback.format_exc())
    

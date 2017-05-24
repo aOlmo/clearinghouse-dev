@@ -118,6 +118,17 @@ DATABASES = {
         'PASSWORD': 'clearinghouse',
         'HOST': '',
         'PORT': '',
+    },
+
+    'keydb1': {
+        # you can use django.db.backends.sqlite3 instead of mysql. If you
+        # decide to do so, you can leave the other fields empty
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'keydb',
+        'USER': 'keydb',
+        'PASSWORD': 'keydb',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
