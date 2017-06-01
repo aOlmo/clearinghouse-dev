@@ -506,7 +506,7 @@ def _do_signed_call(privkeystring, nodeid_ip_port_pubkey_tuple, *callargs):
   try:
     # This can raise an NMClientException, but the handle won't be stored in
     # the nmclient module if it does so we don't have to clean it up.
-    nmhandle = nmclient.nmclient_createhandle(ip, port)
+    nmhandle = nmclient.nmclient_createhandle(str(ip), int(port))
   
     # Be sure to clean up the handle.    
     try:
