@@ -1619,6 +1619,10 @@ def viewexperiments(request):
             'page_top_errors' : page_top_errors, 'ret':ret})
 
 
+def delete_experiment(request, exp_id):
+  experiment_to_delete = Experiment.objects.filter(id=exp_id)
+  experiment_to_delete.delete()
+  return redirect("viewexperiments")
 
 def _build_installer(username, platform):
   """
