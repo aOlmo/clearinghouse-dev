@@ -586,10 +586,16 @@ def getdonations(request):
     return _show_failed_get_geniuser_page(request)
 
   domain = "https://" + request.get_host()
+  username = user.username
+
+  try:
+    android = build_android_installer(request, username)
+  except:
+    android = "Failed to build installer."
 
   return render_to_response('control/getdonations.html',
                             {'username' : user.username,
-                             'domain' : domain},
+                             'domain' : domain, 'android' : android},
                             context_instance=RequestContext(request))
 
 
@@ -1611,30 +1617,6 @@ def viewexperiments(request):
   
   return render(request, 'control/viewexperiments.html', {'username' : username, 
             'page_top_errors' : page_top_errors, 'ret':ret})
-
-
-
-def getdonations(request):
-
-  context_instance = RequestContext(request)
-
-  try:
-    user = _validate_and_get_geniuser(request)
-  except LoggedInButFailedGetGeniUserError:
-    return _show_failed_get_geniuser_page(request)
-
-  username = user.username
-
-  try:
-    android = build_android_installer(request, username)
-    
-  except:
-    android = "Failed to build installer.1"
-
-  return render(request, 'control/getdonations.html', {'username' : username, 
-            'android' : android})
-
-
 
 
 
