@@ -593,9 +593,19 @@ def getdonations(request):
   except:
     android = "Failed to build installer."
 
+  try:
+    mac = build_mac_installer(request, username)
+  except:
+    mac = "Failed to build installer."
+
+  try:
+    linux = build_linux_installer(request, username)
+  except:
+    linux = "Failed to build installer."
+
   return render_to_response('control/getdonations.html',
                             {'username' : user.username,
-                             'domain' : domain, 'android' : android},
+                             'domain' : domain, 'android' : android, 'mac' : mac, 'linux' : linux},
                             context_instance=RequestContext(request))
 
 
@@ -1055,7 +1065,7 @@ def build_linux_installer(request, username):
     return error_response
 
   installer_url = return_value
-  return HttpResponseRedirect(installer_url)
+  return installer_url
 
 
 
@@ -1093,7 +1103,7 @@ def build_mac_installer(request, username):
     return error_response
 
   installer_url = return_value
-  return HttpResponseRedirect(installer_url)
+  return installer_url
 
 
 
