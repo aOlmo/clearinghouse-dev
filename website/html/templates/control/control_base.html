@@ -56,6 +56,10 @@
                         <td><a href="{% url 'myvessels' %}">My Vessels</a></td>
                     {% endblock nav_myvessels %}
 
+                    {% block nav_viewdonations%}
+                        <td><a href="{% url 'viewdonations' %}">View Donations</a></td>
+                    {% endblock nav_viewdonations %}
+
                     {% block nav_getdonations %}
                         <td><a href="{% url 'getdonations' %}">Get Donations</a></td>
                     {% endblock nav_getdonations %}

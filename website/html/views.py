@@ -1065,7 +1065,7 @@ def build_linux_installer(request, username):
     return error_response
 
   installer_url = return_value
-  return installer_url
+  return HttpResponseRedirect(installer_url)
 
 
 
@@ -1103,7 +1103,7 @@ def build_mac_installer(request, username):
     return error_response
 
   installer_url = return_value
-  return installer_url
+  return HttpResponseRedirect(installer_url)
 
 
 
@@ -1633,6 +1633,34 @@ def delete_experiment(request, exp_id):
   experiment_to_delete = Experiment.objects.filter(id=exp_id)
   experiment_to_delete.delete()
   return redirect("viewexperiments")
+
+
+@login_required
+def viewdonations(request):
+  """
+  <Purpose>
+      Show the Experiments Registrated 
+  <Returns>
+     Experimenr objects
+  """
+  # Obtain the context from the HTTP request.
+
+  context_instance = RequestContext(request)
+
+  try:
+    user = _validate_and_get_geniuser(request)
+  except LoggedInButFailedGetGeniUserError:
+    return _show_failed_get_geniuser_page(request)
+
+
+  username = user.username
+  my_donations = interface.get_donations(user)
+
+  return render(request, 'control/viewdonations.html', {'username' : username, 
+            'viewdonations' : viewdonations})
+
+
+
 
 def _build_installer(username, platform):
   """
