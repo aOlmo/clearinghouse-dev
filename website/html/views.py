@@ -609,7 +609,22 @@ def getdonations(request):
                             context_instance=RequestContext(request))
 
 
+def installers(request):
 
+  try:
+    user = _validate_and_get_geniuser(request)
+  except LoggedInButFailedGetGeniUserError:
+    return _show_failed_get_geniuser_page(request)
+
+  username = user.username
+
+  try:
+    android = build_android_installer(request, username)
+  except:
+    android = "Failed to build installer."
+
+  return render('common/installers.html', {'username' : username,
+                                 'android' : android})
 
 
 @login_required

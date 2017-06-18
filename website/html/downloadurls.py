@@ -4,6 +4,8 @@ from django.conf.urls import *
 # from django.contrib import admin
 # admin.autodiscover()
 
+import clearinghouse.website.html.views as htmlviews
+
 urlpatterns = patterns('clearinghouse.website.html.views',
                        
                        # 'Get Donations' functions:
@@ -19,4 +21,6 @@ urlpatterns = patterns('clearinghouse.website.html.views',
                        (r'^(?P<username>\w{3,32})/seattle_mac.tgz$', 'build_mac_installer', {}, 'mac_installer'),
                        # help page
                        (r'^(?P<username>\w{3,32})/help$', 'donations_help', {}, 'donations_help'),
+
+
                       )
