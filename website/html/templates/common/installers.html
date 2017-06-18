@@ -4,17 +4,29 @@
 
 {% endcomment %}
 
+
+
         
 			<table id="downloads">
 				<tr id="android">
-					<td><a href="market://details?id=com.seattletestbed&referrer=utm_source%3D{{domain}}{% url 'android_installer' username %}%26utm_medium%3Ddownload%26utm_content%3D{{ username }}%26utm_campaign%3Dseattle"><img src="{{ MEDIA_URL }}images/android.png" alt="android" /></a></td>
+					<td><a href="https://alpha-ch.poly.edu/cib/c942f93c227b236198867750bb26abfbcd393b26/installers/android/"><img src="{{ MEDIA_URL }}images/android.png" alt="android" /></a></td>
 					<td>
-						<a href="market://details?id=com.seattletestbed&referrer=utm_source%3D{{domain}}{% url 'android_installer' username %}%26utm_medium%3Ddownload%26utm_content%3D{{ username }}%26utm_campaign%3Dseattle">Download installer for Android</a>
+						<a href="https://alpha-ch.poly.edu/cib/c942f93c227b236198867750bb26abfbcd393b26/installers/android/">Download installer for Android</a>
 						<p>
 							<strong>Instructions:</strong>
 						</p>
 						<ol>
-							<li>On your Android device, tap the icon to the left to download {{ TESTBED }} Testbed via Google Play. (If that doesn't work, please try <a href="https://play.google.com/store/apps/details?id=com.seattletestbed&referrer=utm_source%3D{{domain}}{% url 'android_installer' username %}%26utm_medium%3Ddownload%26utm_content%3D{{ username }}%26utm_campaign%3Dseattle">this alternative link</a>.)</li> 
+							<li>On your Android device, download {{ TESTBED }} Testbed via Google Play and add this url into the develop tab <a href="https://alpha-ch.poly.edu/cib/c942f93c227b236198867750bb26abfbcd393b26/installers/android/">https://alpha-ch.poly.edu/cib/c942f93c227b236198867750bb26abfbcd393b26/installers/android/</a>.)</li> 
+							<li>(To save you some typing, you may scan the QR code that encodes the URL)
+							<div id="qrcode"></div>
+								<script type="text/javascript">
+									new QRCode(document.getElementById("qrcode"), {
+										text: "https://alpha-ch.poly.edu/cib/c942f93c227b236198867750bb26abfbcd393b26/installers/android/",
+										width: 256,
+										height: 256
+										});
+								</script>
+							</li>
 							<li>In the Google Play app, tap Install and review the requested permissions.</li> 
 							<li>Start the app and follow the on-screen instructions to complete the installation. Depending on the speed of your device, the process can take a few minutes to finish.</li> 
 						</ol>

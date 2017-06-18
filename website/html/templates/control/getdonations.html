@@ -25,18 +25,14 @@ Get Donations - {{ TESTBED }} {{ CLEARINGHOUSE }}
 {% block content %}
 	<div id="main">
 		<div id="middle">
-			<div>This address is your custom installer download URL. Use it when setting up Sensiblity Testbed on your Android device. (To save you some typing, you may scan the QR code that encodes the URL).</div>
-			Android builder: <a class="share-url round_shadow" href={{ android }}>{{ android }}</a>
-			<div id="qrcode"></div>
-			<script type="text/javascript">
-				new QRCode(document.getElementById("qrcode"), {
-					text: "{{ android }}",
-					width: 256,
-					height: 256
-				});
-			</script>
-			Mac builder: <a class="share-url round_shadow" href={{ mac }}>{{ mac }}</a><br>
-			Linux builder: <a class="share-url round_shadow" href={{ linux }}>{{ linux }}</a>
+			<div id="downloadlink">
+				<p>Give this link to others so they can donate on your behalf:</p>
+				<a href="{% url 'installers' username %}">{{ domain }}{% url 'installers' username %}</a>
+			</div>
+
+			{% include "common/installers.html" %}
+
+
 		</div>
 	</div>
 

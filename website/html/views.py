@@ -1655,9 +1655,10 @@ def viewdonations(request):
 
   username = user.username
   my_donations = interface.get_donations(user)
+  lent = "AA"
 
   return render(request, 'control/viewdonations.html', {'username' : username, 
-            'viewdonations' : viewdonations})
+            'my_donations' : my_donations, 'lent' : lent})
 
 
 

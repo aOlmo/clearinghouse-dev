@@ -1,5 +1,15 @@
 {% extends "common/geni_base.html" %}
 
+
+{% block script %}
+
+{{ block.super }}
+	<script type="text/javascript" src="{{ MEDIA_URL }}scripts/jqbrowser.js" charset="utf-8"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}scripts/download.js" charset="utf-8"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL}}scripts/qrcode.min.js"></script>
+{% endblock script %}
+
+
 {% block navigation %}
 	<div id="navigator">
 		<div id="tabs">
