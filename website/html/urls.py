@@ -44,6 +44,7 @@ urlpatterns = patterns('clearinghouse.website.html.views',
                         'getdonations'),
 
                        (r'^installers$', htmlviews.installers, {}, 'installers'),
+                       
                        # 'My GENI' page functions:
                        # get new resources (from form)
                        (r'^get_resources$', htmlviews.get_resources, {},

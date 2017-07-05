@@ -54,14 +54,14 @@ from repyportability import *
 add_dy_support(locals())
 
 ###### code to enable affixes #########
-affix_stack = dy_import_module('affix_stack.r2py')
+#affix_stack = dy_import_module('affix_stack.r2py')
 
-affix_obj = affix_stack.AffixStack('(CoordinationAffix)(NamingAndResolverAffix)')
+#affix_obj = affix_stack.AffixStack('(CoordinationAffix)(NamingAndResolverAffix)')
 
-openconnection = affix_obj.openconnection
+#openconnection = affix_obj.openconnection
 
 # overwrite the openconnection that is provided to modules we import
-sys.modules['dylink_r2py'].openconnection = openconnection
+#sys.modules['dylink_r2py'].openconnection = openconnection
 
 ####### end code to enable affixes ######
 

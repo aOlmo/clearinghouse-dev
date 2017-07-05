@@ -1268,10 +1268,10 @@ def registerexperiment(request):
 
             if page_top_errors == []:
               try:
-                bluetooth = interface.register_sensor('bluetooth',experiment,battery_frequency,
-                                            battery_frequency_unit,battery_frequency_other,
-                                            battery_precision,battery_truncation, battery_precision_other,
-                                            battery_goal,[bluetooth_state,bluetooth_is_discovering,scan_mode,
+                bluetooth = interface.register_sensor('bluetooth',experiment,bluetooth_frequency,
+                                            bluetooth_frequency_unit,bluetooth_frequency_other,
+                                            bluetooth_precision,bluetooth_truncation, bluetooth_precision_other,
+                                            bluetooth_goal,[bluetooth_state,bluetooth_is_discovering,scan_mode,
                                             local_address,local_name])
               except ValidationError, err:
                 page_top_errors.append(str(err))
@@ -1469,9 +1469,9 @@ def registerexperiment(request):
             if page_top_errors == []:
               try:
                 sensor = interface.register_sensor('sensor',experiment,sensor_frequency,
-                                            cellular_frequency_unit,cellular_frequency_other,
-                                            cellular_precision,cellular_truncation, cellular_precision_other,
-                                            cellular_goal,[sensor_data,sensors_accuracy,light,
+                                            sensor_frequency_unit, sensor_frequency_other,
+                                            sensor_precision,sensor_truncation, sensor_precision_other,
+                                            sensor_goal,[sensor_data,sensors_accuracy,light,
                                             accelerometer,magnetometer,orientation])
               except ValidationError, err:
                 page_top_errors.append(str(err))
@@ -1508,10 +1508,10 @@ def registerexperiment(request):
 
             if page_top_errors == []:
               try:
-                signalstrength = interface.register_sensor('signalstrength',experiment,cellular_frequency,
-                                            cellular_frequency_unit,cellular_frequency_other,
-                                            cellular_precision,cellular_truncation, cellular_precision_other,
-                                            cellular_goal,[signal_strengths])
+                signalstrength = interface.register_sensor('signalstrength',experiment,signalstrength_frequency,
+                                            signalstrength_frequency_unit,signalstrength_frequency_other,
+                                            signalstrength_precision,signalstrength_truncation, signalstrength_precision_other,
+                                            signalstrength_goal,[signal_strengths])
               except ValidationError, err:
                 page_top_errors.append(str(err))
 
@@ -1555,10 +1555,10 @@ def registerexperiment(request):
 
             if page_top_errors == []:
               try:
-                wifi = interface.register_sensor('wifi',experiment,cellular_frequency,
-                                            cellular_frequency_unit,cellular_frequency_other,
-                                            cellular_precision,cellular_truncation, cellular_precision_other,
-                                            cellular_goal,[wifi_state,ip_address,link_speed,
+                wifi = interface.register_sensor('wifi',experiment,wifi_frequency,
+                                            wifi_frequency_unit,wifi_frequency_other,
+                                            wifi_precision,wifi_truncation, wifi_precision_other,
+                                            wifi_goal,[wifi_state,ip_address,link_speed,
                                             supplicant_state,ssid,rssi,scan_results])
               except ValidationError, err:
                 page_top_errors.append(str(err))
