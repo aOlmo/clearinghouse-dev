@@ -73,7 +73,7 @@
 
                                     {% csrf_token %}
                                     {% for item in r_form %}
-                                        {% print "hello world" %}
+                                        {{ print "hello world" }}
                                     {% endfor %}
                                     <!--Register experiment form-->
                                     {{ r_form.management_form }}
