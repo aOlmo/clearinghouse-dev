@@ -72,6 +72,9 @@
                                 <form action="{% url 'registerexperiment' %}" method="post">
 
                                     {% csrf_token %}
+                                    {% for item in r_form %}
+                                        {% print "hello world" %}
+                                    {% endfor %}
                                     <!--Register experiment form-->
                                     {{ r_form.management_form }}
                                     {{r_form.expe_name.label_tag}} {{r_form.expe_name}}<br>
