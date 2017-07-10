@@ -2,5 +2,17 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/affix" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/common" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/nodemanager" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/portability" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/repy_v1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/repy_v2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/resource" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/seash" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/seattlelib_v1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/seattlelib_v2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/softwareupdater" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DEPENDENCIES/utf" vcs="Git" />
   </component>
 </project>
