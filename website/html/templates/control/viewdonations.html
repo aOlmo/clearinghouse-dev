@@ -1,0 +1,79 @@
+{% extends "control/control_base.html" %}
+
+{% comment %}
+<Program>
+    control/viewdonations.html
+
+    <Author>
+        Originally by?:
+        Eric Velazquez 2017
+
+        <Purpose>
+            Django template file for the testbed clearinghouse's 'view registered experiments' page.
+            This page is for logged in users only.
+
+            <Extends>
+                control/control_base.html
+
+                <Stylesheet>
+                    common.css
+                    account.css
+                    
+
+                    <Scripts>
+                        register.js
+
+                        <Template Variables>
+                            Experiments objects
+
+
+                            {% endcomment %}
+
+                            {% block title %}
+                            View Donations - {{ TESTBED }} {{ CLEARINGHOUSE }}
+                            {% endblock title %}
+
+                            {% block script %}
+                            {{ block.super }}
+                                
+                            {% endblock script %}
+
+                            {% block style %}
+                            {{ block.super }}
+                            <link href="{{ MEDIA_URL }}css/help.css" rel="stylesheet" type="text/css"/>
+                            {% endblock style %}
+
+                            {% block nav_viewdonations %}
+                            <td class="active"><a href="{% url 'viewdonations' %}">View Donations</a></td>
+                            {% endblock nav_viewdonations %}
+
+                            {% block content %}
+
+                            {% csrf_token %}
+                            <div id="main">
+                                <div id="middle">
+                                    <h1>View your donations</h1>
+                                    <h2>Donations that are currently active</h2><br><br>
+                                    <table class="profile">
+                                    {% if my_donations %}
+                
+                                        {% for donation in my_donations %}
+                                            {{ donation }}
+                                            <br>
+                                        {% endfor %}
+                                     {% else %}
+                                        <p class="warning">
+                                            No active donations available.
+                                        </p>
+                                    {% endif %}
+        
+                                    </table>
+
+                                    
+                                </div>
+                            </div>
+
+
+
+
+                            {% endblock content %}

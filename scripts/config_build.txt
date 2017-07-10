@@ -1,0 +1,33 @@
+# Build file for the Repy runtime that the clearinghouse requires. 
+# (Essentially identical with repy_v2's config_build.txt).
+#
+# If it were not for the problems with repyportability / repyhelper / 
+# dylink, the custominstallerbuilder code could do plain Python `import`'s 
+# from Repy files, and be done. Since that doesn't work currently, 
+# we build a directory containing the full runtime instead.
+#
+# Contributors please note:
+# Be sure to revisit this workaround whenever progress is made on 
+# SeattleTestbed/portability#25 through 28!
+./*
+DEPENDENCIES/seattlelib_v2/*
+DEPENDENCIES/repy_v2/*
+DEPENDENCIES/portability/*
+DEPENDENCIES/common/*
+DEPENDENCIES/utf/*
+DEPENDENCIES/common/seattleclearinghouse_xmlrpc.py
+DEPENDENCIES/affix/*
+DEPENDENCIES/affix/components/*
+DEPENDENCIES/nodemanager/runonce.py
+
+# Needed so we can create state transition keys
+./node_state_transitions/generate_state_keys.sh
+DEPENDENCIES/softwareupdater/generatekeys.py
+
+# Tests
+test DEPENDENCIES/utf/*
+test DEPENDENCIES/seattlelib_v2/tests/*
+test DEPENDENCIES/clearinghouse/tests/*
+test DEPENDENCIES/repy_v2/testsV2/*
+test DEPENDENCIES/common/restrictions.test
+

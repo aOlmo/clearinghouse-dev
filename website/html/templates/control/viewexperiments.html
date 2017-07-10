@@ -1,0 +1,87 @@
+{% extends "control/control_base.html" %}
+
+{% comment %}
+<Program>
+    control/viewexperiments.html
+
+    <Author>
+        Originally by?:
+        Eric Velazquez 2017
+
+        <Purpose>
+            Django template file for the testbed clearinghouse's 'view registered experiments' page.
+            This page is for logged in users only.
+
+            <Extends>
+                control/control_base.html
+
+                <Stylesheet>
+                    common.css
+                    account.css
+                    
+
+                    <Scripts>
+                        register.js
+
+                        <Template Variables>
+                            Experiments objects
+
+
+                            {% endcomment %}
+
+                            {% block title %}
+                            View Experiments - {{ TESTBED }} {{ CLEARINGHOUSE }}
+                            {% endblock title %}
+
+                            {% block script %}
+                            {{ block.super }}
+                                
+                            {% endblock script %}
+
+                            {% block style %}
+                            {{ block.super }}
+                            <link href="{{ MEDIA_URL }}css/help.css" rel="stylesheet" type="text/css"/>
+                            {% endblock style %}
+
+                            {% block nav_view_expe %}
+                            <td class="active"><a href="{% url 'viewexperiments' %}">View Experiments</a></td>
+                            {% endblock nav_view_expe %}
+
+                            {% block content %}
+
+                            {% csrf_token %}
+                            <div id="main">
+                                {% if page_top_errors %}
+                                    <p class="warning">
+                                    {% for error in page_top_errors %}
+                                        {{ error }}
+                                        <br>
+                                    {% endfor %}
+                                     </p>
+                                {% endif %}
+                                <div id="middle">
+                                    <h1>View your experiments</h1>
+                                    <h2>Experiments and sensors you have registered</h2><br><br>
+                                    <table class="profile">
+                                    {% for list in ret %}
+                                        {% if forloop.counter|divisibleby:2 %}
+                                            <tr class="odd">
+                                        {% else %}
+                                            <tr class="odd">
+                                        {% endif %} 
+
+                                        Experiment name : {{list.0}}<br>
+                                        Sensors : {{list.1}}<br>
+                                        <div align="right"><a href="{% url 'delete_experiment' list.2 %}">Delete</a></div><br><br>
+
+                                        </tr>
+                                    </table>
+
+                                    {%endfor%}
+                                </div>
+                            </div>
+
+
+
+
+                            {% endblock content %}
